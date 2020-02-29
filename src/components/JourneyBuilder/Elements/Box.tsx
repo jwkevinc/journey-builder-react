@@ -6,7 +6,8 @@ import {Rect, Line, Circle, Text} from 'react-konva';
 interface IProp {
   level: number,
   isLeftChild?: boolean,
-  isRightChild?: boolean
+  isRightChild?: boolean,
+  onAddClick: () => void
 }
 
 // A simple binary tree expander?
@@ -63,7 +64,6 @@ export default function Box(props: IProp) {
           stroke="black"
           radius={20}
           strokeWidth={strokeWidth}
-          onMouseOver={(e) => console.log('mouse over, apply some style to it')}
         />
         <Text
           x={textX}
