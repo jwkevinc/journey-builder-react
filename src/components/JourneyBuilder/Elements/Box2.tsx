@@ -50,13 +50,21 @@ export default function Box2(props: BoxProp) {
     console.log('anchor up: ', e);
   }
 
+  function onHandleMouseClick(e: any) {
+    console.log('mouse clicked: ', e.target);
+  }
+
+  function findCircleCoord() {
+    return {
+      x: findAnchor().x,
+      y: findAnchor().y + 90
+    }
+  }
+
   return (
     <React.Fragment>
-      <Line
-        points={[center.x, center.y, findAnchor().x, findAnchor().y]}
-        stroke="black"
-      />
       <Circle
+        name="circle"
         x={findAnchor().x}
         y={findAnchor().y}
         radius={5}
@@ -76,6 +84,13 @@ export default function Box2(props: BoxProp) {
         draggable
         onDragMove={(e: any) => onHandleMouseMove(e)}
         onDragEnd={(e: any) => onHandleDragEnd(e)}
+      />
+      <Circle
+        x={findCircleCoord().x}
+        y={findCircleCoord().y}
+        radius={15}
+        stroke="black"
+        onClick={(e: any) => onHandleMouseClick(e)}
       />
     </React.Fragment>
   )
