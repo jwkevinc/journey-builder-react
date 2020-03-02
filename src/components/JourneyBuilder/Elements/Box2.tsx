@@ -1,13 +1,18 @@
 
 import React, { useState, useRef } from 'react';
 import Konva from 'konva';
-import {Rect, Circle} from 'react-konva';
+import {Rect, Circle, Line} from 'react-konva';
 
 interface BoxProp {
   point: {
     x: number,
     y: number
   }
+}
+
+const center = {
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2,
 }
 
 export default function Box2(props: BoxProp) {
@@ -18,9 +23,7 @@ export default function Box2(props: BoxProp) {
 
   const rectRef = useRef<Konva.Rect>(null);
   const [point, setPoint] = useState({x, y});
-  const [opacity, setOpacity] = useState(1);
   const strokeWidth = 3;
-
 
   function findAnchor() {
     return {
@@ -32,24 +35,27 @@ export default function Box2(props: BoxProp) {
   function onHandleMouseMove(e: any) {
     const target: Konva.Rect = e.currentTarget;
     let { x, y } = target.attrs;
-    setOpacity(0.5);
     setPoint({x, y});
   }
 
   function onHandleDragEnd(e: any) {
-    console.log('drag ended: ', e);
+    console.log('drag end: ', e);
   }
 
   function onHandleAnchorDown(e: any) {
-    console.log(e);
+    console.log('anchor down: ', e);
   }
 
   function onHandleAnchorUp(e: any) {
-    console.log(e);
+    console.log('anchor up: ', e);
   }
 
   return (
     <React.Fragment>
+      <Line
+        points={[center.x, center.y, findAnchor().x, findAnchor().y]}
+        stroke="black"
+      />
       <Circle
         x={findAnchor().x}
         y={findAnchor().y}
@@ -66,7 +72,6 @@ export default function Box2(props: BoxProp) {
         height={height}
         stroke="black"
         fill="white"
-        opacity={opacity}
         strokeWidth={strokeWidth}
         draggable
         onDragMove={(e: any) => onHandleMouseMove(e)}

@@ -20,7 +20,6 @@ export default function JourneyBuilder() {
   ])
   const [edges, setEdges] = useState<Konva.Line[]>([]);
 
-
   useEffect(() => {
   }, []);
 
@@ -37,24 +36,12 @@ export default function JourneyBuilder() {
           {rects.map((point: Point, idx: number) => <Box2 point={point} key={'box'+idx}/> )}
         </Layer>
 
-        {/* Line Layer */}
+        {/* Some Other Layer (This is a way to organize complex visualization) */}
+        {/* We can toggle on and off, erase everythign in layer, etc */}
         <Layer>
-          <Line
-            points={[rects[0].x, rects[0].y, rects[1].x, rects[1].y]}
-            stroke="black"
-            closed
-          />
         </Layer>
 
       </Stage>
     </div>
   )
 }
-
-/* <Line
-  points={[anchor.x, anchor.y, window.innerWidth / 2, window.innerHeight / 2]}
-  tension={0.2}
-  stroke="black"
-  closed
-  strokeWidth={strokeWidth}
-/> */
