@@ -4,6 +4,7 @@ import Konva from 'konva';
 import {Rect, Circle, Line} from 'react-konva';
 
 interface BoxProp {
+  onClick: (e: any) => void,
   point: {
     x: number,
     y: number
@@ -51,7 +52,7 @@ export default function Box2(props: BoxProp) {
   }
 
   function onHandleMouseClick(e: any) {
-    console.log('mouse clicked: ', e.target);
+    props.onClick(e);
   }
 
   function findCircleCoord() {
@@ -86,6 +87,7 @@ export default function Box2(props: BoxProp) {
         onDragEnd={(e: any) => onHandleDragEnd(e)}
       />
       <Circle
+        name="abc"
         x={findCircleCoord().x}
         y={findCircleCoord().y}
         radius={15}

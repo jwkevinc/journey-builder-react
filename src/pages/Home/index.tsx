@@ -1,13 +1,13 @@
 
 import React from 'react';
-import JourneyBuilder from 'components/JourneyBuilder';
+import JourneyBuilderTable from 'components/JourneyBuilderTable';
 
 import './home.scss';
 
 export default function Home() {
   return (
     <div className="Home">
-      <JourneyBuilder/>
+      <JourneyBuilderTable/>
     </div>
   )
 }

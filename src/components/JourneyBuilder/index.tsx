@@ -1,13 +1,20 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {Stage, Layer, Rect, Line, KonvaNodeComponent, Circle} from 'react-konva';
-import Konva from 'konva';
 
 import Box2 from './Elements/Box2';
 import { Point } from 'types/shapes';
 
 // Loop through rect array, and render each object.
 // Loop through each edge array, and connect the two rects together using a line.
+
+const tree = {
+}
+
+const edges = [{
+  from: 1,
+  to: 0
+}]
 
 function createRect(x: number, y: number) {
   return {
@@ -19,8 +26,8 @@ function createRect(x: number, y: number) {
 
 export default function JourneyBuilder() {
 
-  const width = 1000;
-  const height = 1000;
+  const width = 1200;
+  const height = 640;
 
   const stageRef = useRef(null);
   const layerRef = useRef(null);
@@ -42,10 +49,18 @@ export default function JourneyBuilder() {
     }
   }, []);
 
+  function onClick(e: any) {
+    console.log('on click from parent: ', e.target.name());
+  }
+
+  function addNewNode() {
+    console.log('add new node');
+  }
+
   return (
     <div id="journey-builder">
+      <button onClick={addNewNode}> Add New Node </button>
       <Stage
-        name="kevin"
         ref={stageRef}
         scale={scale}
         width={width}
@@ -54,7 +69,7 @@ export default function JourneyBuilder() {
         <Layer
           ref={layerRef}
         >
-          {rects.map((point: Point, idx: number) => <Box2 point={point} key={'box'+idx}/> )}
+          {rects.map((point: Point, idx: number) => <Box2 onClick={onClick} point={point} key={'box'+idx}/> )}
         </Layer>
       </Stage>
     </div>
