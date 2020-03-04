@@ -1,77 +1,95 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import {Stage, Layer, Rect, Line, KonvaNodeComponent, Circle} from 'react-konva';
+import React, { useState } from 'react';
+import { Block } from './components/blocks';
+import { insertAfterId, deleteId } from 'helper/util';
 
-import Box2 from './Elements/Box2';
-import { Point } from 'types/shapes';
+import JSONBuilder from 'components/JsonBuilder';
+import './journeyBuilder.scss';
 
-// Loop through rect array, and render each object.
-// Loop through each edge array, and connect the two rects together using a line.
+export default function JourneyBuilderTable() {
 
-const tree = {
-}
-
-const edges = [{
-  from: 1,
-  to: 0
-}]
-
-function createRect(x: number, y: number) {
-  return {
-    id: 'rect-1',
-    x: x || Math.round(Math.random() * 500),
-    y: y || Math.round(Math.random() * 500),
-  }
-}
-
-export default function JourneyBuilder() {
-
-  const width = 1200;
-  const height = 640;
-
-  const stageRef = useRef(null);
-  const layerRef = useRef(null);
-  const [rects, setRects] = useState<Point[]>([createRect(500, 150)])
-  const [scale, setScale] = useState({x: 1, y: 1});
-
-  useEffect(() => {
-    const resizeHandler = () => {
-      const layer = layerRef.current;
-      const stage = stageRef.current;
-      if (stage) {
-        const scale = stage['attrs']['container']['clientWidth'] / stage['attrs']['width']
-        setScale({x: scale, y: scale});
+  const initialMapping = {
+    id: 1,
+    method: 'trigger',
+    data: {
+    },
+    next: {
+      id: 2,
+      method: 'email',
+      data: {
+      },
+      next: {
+        id: 3,
+        method: 'condition',
+        data: {
+        },
+        yes: {
+          id: 4,
+          method: 'email',
+          data: {
+          },
+          next: {
+            id: 5,
+            method: 'delay2 ',
+            data: {
+            },
+            next: undefined
+          }
+        },
+        no: {
+          id: 6,
+          method: 'delay',
+          data: {
+          },
+          next: {
+            id: 7,
+            method: 'condition',
+            data: {
+            },
+            yes: {
+              id: 8,
+              method: 'webhook',
+              data: {},
+              next: undefined,
+            },
+            no: {
+              id: 9,
+              method: 'experience',
+              data: {},
+              next: undefined
+            }
+          }
+        }
       }
     }
-    window.addEventListener('resize', resizeHandler);
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    }
-  }, []);
-
-  function onClick(e: any) {
-    console.log('on click from parent: ', e.target.name());
   }
 
-  function addNewNode() {
-    console.log('add new node');
+  const [mapping, setMapping] = useState(initialMapping);
+
+  // Will mutate mappings to correctly handle the invoked action, and set it back to react's state.
+  function onHandleAdd(id: any, step: any) {
+    insertAfterId(mapping, id, step);
+    setMapping(Object.assign({}, mapping));
+  }
+
+  function onHandleDelete(id: any) {
+    deleteId(mapping, id);
+    setMapping(Object.assign({}, mapping));
   }
 
   return (
-    <div id="journey-builder">
-      <button onClick={addNewNode}> Add New Node </button>
-      <Stage
-        ref={stageRef}
-        scale={scale}
-        width={width}
-        height={height}
-      >
-        <Layer
-          ref={layerRef}
-        >
-          {rects.map((point: Point, idx: number) => <Box2 onClick={onClick} point={point} key={'box'+idx}/> )}
-        </Layer>
-      </Stage>
+    <div className="journey-builder">
+      <div className="journey-diagram">
+        <div className="center">
+        <Block
+          structure={mapping}
+          onAdd={onHandleAdd}
+          onDelete={onHandleDelete}/>
+        </div>
+      </div>
+      <div className="json-viewer">
+        <JSONBuilder mapping={mapping} />
+      </div>
     </div>
   )
 }

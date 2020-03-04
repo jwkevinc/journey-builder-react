@@ -1,0 +1,35 @@
+
+@mixin center-vh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  @include center-vh;
+}
+
+.journey-builder {
+  width: auto;
+  display: flex;
+}
+
+.journey-diagram {
+  display: flex;
+  transform: scale(0.9);
+  border: 1px solid gray;
+  margin-top: 50px;
+  padding: 25px;
+  height: 500px;
+  overflow-x: scroll;
+  width: 75vw;
+}
+
+.json-viewer {
+  padding: 20px;
+  overflow-y: scroll;
+  height: 80vh;
+  max-width: 350px;
+  border: 1px solid black;
+  margin-right: 20px;
+}

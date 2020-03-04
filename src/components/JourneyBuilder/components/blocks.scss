@@ -1,0 +1,75 @@
+
+
+.block {
+  margin-right: 10px;
+  margin-top: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:before {
+    content: "";
+    border: 1px solid black;
+    width: 20px;
+  }
+  &__content {
+    padding: 0 20px;
+    border: 1px solid black;
+    position: relative;
+    .delete {
+      color: black;
+      position: absolute;
+      top: -15px;
+      right: 5px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+  }
+  .add {
+    border: 1px solid black;
+    padding: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}
+
+.block-condition {
+  border: 1px solid blue;
+  flex-direction: column;
+  position: relative;
+  height: 100px;
+  &__branch {
+    display: flex;
+    &.yes {
+      top: -35px;
+      color: green;
+      position: absolute;
+    }
+    &.no {
+      top: 65px;
+      color: orange;
+      position: absolute;
+    }
+  }
+}
+
+.add-condition {
+  width: 50px;
+  height: 100%;
+  position: relative;
+  color: black;
+  &__choice {
+    text-align: center;
+    position: absolute;
+    border: 1px solid black;
+    width: 100%;
+    height: 45%;
+    cursor: pointer;
+  }
+  .yes {
+    top: 0;
+  }
+  .no {
+    bottom: 0;
+  }
+}

@@ -1,8 +1,12 @@
 
 import React from 'react';
+import JSONTree from 'react-json-tree';
 
-export default function JsonBuilder() {
+export default function JsonBuilder(props: any) {
   return (
-    <p> Json Builder </p>
+    <JSONTree
+      theme={'monokai'}
+      shouldExpandNode={(props: any) => true}
+      data={props.mapping}/>
   )
 }
