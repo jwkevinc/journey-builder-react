@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/konva-react/static/css/main.d473f19c.chunk.css",
+    "main.js": "/konva-react/static/js/main.9475d60f.chunk.js",
+    "main.js.map": "/konva-react/static/js/main.9475d60f.chunk.js.map",
+    "runtime-main.js": "/konva-react/static/js/runtime-main.e800e16b.js",
+    "runtime-main.js.map": "/konva-react/static/js/runtime-main.e800e16b.js.map",
+    "static/js/2.de9efacb.chunk.js": "/konva-react/static/js/2.de9efacb.chunk.js",
+    "static/js/2.de9efacb.chunk.js.map": "/konva-react/static/js/2.de9efacb.chunk.js.map",
+    "index.html": "/konva-react/index.html",
+    "precache-manifest.9a9172716082563882ddcf059246784b.js": "/konva-react/precache-manifest.9a9172716082563882ddcf059246784b.js",
+    "service-worker.js": "/konva-react/service-worker.js",
+    "static/css/main.d473f19c.chunk.css.map": "/konva-react/static/css/main.d473f19c.chunk.css.map",
+    "static/js/2.de9efacb.chunk.js.LICENSE.txt": "/konva-react/static/js/2.de9efacb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e800e16b.js",
+    "static/js/2.de9efacb.chunk.js",
+    "static/css/main.d473f19c.chunk.css",
+    "static/js/main.9475d60f.chunk.js"
+  ]
+}
