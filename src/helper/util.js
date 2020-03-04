@@ -1,5 +1,5 @@
 
-const iterator = ['next', 'yes', 'no'];
+const connectors = ['next', 'yes', 'no'];
 
 function uniqueID() {
   return '_' + Math.random().toString(36).substr(2, 9);
@@ -10,7 +10,7 @@ export function findById(o, id) {
   if (o.id === id) return o;
   var result, p;
   for (p in o) {
-    if (iterator.includes(p) && o.hasOwnProperty(p) && typeof o[p] === 'object') {
+    if (connectors.includes(p) && o.hasOwnProperty(p) && typeof o[p] === 'object') {
       result = findById(o[p], id);
       if (result) {
         return result;
@@ -30,7 +30,7 @@ export function findParentByChildId(o, id) {
 
   var result, p;
   for (p in o) {
-    if (iterator.includes(p) && o.hasOwnProperty(p) && typeof o[p] === 'object') {
+    if (connectors.includes(p) && o.hasOwnProperty(p) && typeof o[p] === 'object') {
       result = findParentByChildId(o[p], id);
       if (result) {
         return result;
@@ -60,9 +60,9 @@ export function deleteId(o, id) {
     return;
   }
   var parent = findParentByChildId(o, id);
-  if (parent.hasOwnProperty('next')) {
+  if (parent.next) {
     parent.next = undefined;
-  } else if (parent.hasOwnProperty('yes') && parent.yes && parent.yes.id === id) {
+  } else if (parent.yes && parent.yes.id === id) {
     parent.yes = undefined;
   } else {
     parent.no = undefined;

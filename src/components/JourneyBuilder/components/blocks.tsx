@@ -28,6 +28,7 @@ export function Block(props: any) {
           <p className="delete" onClick={() => props.onDelete(id)}> X </p>
           <p> {method} </p>
         </div>
+        {/* Connector */}
         {method === 'condition' ? (
           <div className="add-condition">
             <div className="add-condition__choice yes" onClick={() => props.onAdd(id, 'yes')}>Yes +</div>

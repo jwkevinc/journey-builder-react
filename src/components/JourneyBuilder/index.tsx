@@ -81,10 +81,10 @@ export default function JourneyBuilderTable() {
     <div className="journey-builder">
       <div className="journey-diagram">
         <div className="center">
-        <Block
-          structure={mapping}
-          onAdd={onHandleAdd}
-          onDelete={onHandleDelete}/>
+          <Block
+            structure={mapping}
+            onAdd={onHandleAdd}
+            onDelete={onHandleDelete}/>
         </div>
       </div>
       <div className="json-viewer">
