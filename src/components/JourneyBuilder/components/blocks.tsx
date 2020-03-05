@@ -39,7 +39,7 @@ export function Block(props: any) {
         )}
       </div>
       {/* Recursive Chain Call */}
-      {method === 'condition' && (yes || no ) && <ConditionBlock key={id} {...props} yes={yes} no={no}/>}
+      {method === 'condition' && <ConditionBlock key={id} {...props} yes={yes} no={no}/>}
       {method !== 'condition' && next && <Block key={next.id} {...props} structure={next}/>}
     </React.Fragment>
   )

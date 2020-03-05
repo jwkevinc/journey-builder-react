@@ -42,8 +42,6 @@ export function findParentByChildId(o, id) {
 export function insertAfterId(o, id, step) {
   var current = findById(o, id);
 
-  // TODO.
-  // Add dynamic data generation logic here
   let newNode = {
     id: uniqueID(),
     method: 'NEW',
